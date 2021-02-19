@@ -1,0 +1,23 @@
+﻿Prints nondefault services
+Get-wmiobject win32_service | where { $_.Caption -notmatch "Windows" -and $_.Name -notmatch "TPAutoConnSvc" -and $_.Name -notmatch "VMware" -and $_.Name -notmatch "TPVCGateway" -and $_.Name -notmatch "VGAuthService" -and $_.Name -notmatch "VMTools" -and $_.PathName -notmatch "Windows" -and $_.PathName -notmatch "policyhost.exe" -and $_.Name -ne "LSM" -and $_.PathName -notmatch "OSE.EXE" -and $_.PathName -notmatch
+"OSPPSVC.EXE" -and $_.PathName -notmatch "Microsoft Security Client" }
+
+
+Importing GP for Active Directory 
+Group Policy Management> Make new GPO> Import Settings> Select Folder GPOAD
+Set as Enforced and link everywhere
+
+
+Checks Scheduled Tasks. Run in folder with XML. Check before and after to make sure there are some to delete.
+Compare-Object -ReferenceObject (Import-Clixml -Path .\ST.xml) -DifferenceObject (Get-ScheduledTask) | Where-Object {$_.SideIndicator -eq "=>"}
+Compare-Object -ReferenceObject (Import-Clixml -Path .\ST.xml) -DifferenceObject (Get-ScheduledTask) | Where-Object {$_.SideIndicator -eq "=>"} | ForEach-Object {Unregister-ScheduledTask -Confirm:$false -InputObject $_.InputObject}
+
+Check open ports with TCPView and netstat -aon
+
+Check out these for any funny business:
+win.ini
+system.ini
+Msconfig
+%appdata%
+check rsop.msc
+Check Internet Adapter Settings (Disable NetBIOS over TCP/IP)

@@ -1,0 +1,14 @@
+R​​​​‍‎‍​​​​‏‏‌​​​​‎‏‎​​​​‏​‌​​​​‏‍‏​​​​‎‌​​​​​‎‏‍​​​​‏‎‌​​​​‏‍‏​​​​‏‌​​​​​‏‍‌​​​​‏‎‌un at your own risk. 
+These are very aggressive scripts, made for CyberPatriot, to set security policies aligning them with Black Viper and other standards.
+
+PSScript.ps1 runs without user input.
+
+SecureWindows.bat only asks if RDP should be enabled or disabled. But does a lot more.
+
+SecureWindowsUsers.bat requires 2 files in the same directory, "AllowedAdmins.txt" and "AllowedUsers.txt".
+The format is each username on individual lines. 
+"AllowedUsers.txt" is all the user accounts you want to be enabled. Any account left off with be disabled.
+"AllowedAdmins.txt" is all accounts that should be apart of the admin group. Any account left off will be removed.
+The script also changes all user passwords to "QwErTyUiOp{]|\1".
+
+ST.xml is a list of the default Windows 10 services. The checklist gives the Powershell commands to use it.
